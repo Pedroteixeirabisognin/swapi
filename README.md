@@ -20,7 +20,8 @@ Cada filme possui uma versão, que é incrementada sempre que sua descrição é
 - JUnit 5
 - Mockito
 - MockMvc
-
+- OpenAPI 3 / Swagger UI
+  
 ## Executando o projeto
 
 ### Pré-requisitos
@@ -61,7 +62,7 @@ http://localhost:8080
 Durante a inicialização, os filmes são carregados da SWAPI e armazenados em memória.
 
 ## Endpoints
-OBS: Uma collection do postman está disponível no projeto para caso queiram importar.
+- Para testar a aplicação vocês podem usar a url da documentação do [swagger](http://localhost:8080/swagger-ui/index.html) da aplicação ou uma collection do postman que está disponível no projeto.
 
 ### Listar filmes
 
