@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="img/swgif.gif" width="100%" height="300px"/> 
+</div>
+
 # SWAPI - Backend Challenge
 
 API REST desenvolvida em Java e Spring Boot utilizando dados da [SWAPI](https://swapi.py4e.com/).
@@ -147,3 +151,11 @@ https://swapi.py4e.com/api/films/
 ```
 
 A SWAPI precisa estar disponível durante a inicialização da aplicação para que os filmes sejam carregados.
+
+### <a name="final"> Considerações finais</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;API criada e documentada por Pedro Teixeira Bisognin, espero que gostem e <b>que a força esteja com voces!!!</b>
+
+<div align="center">
+  <img src="img/rodapé.jpg"/>
+<div>  
