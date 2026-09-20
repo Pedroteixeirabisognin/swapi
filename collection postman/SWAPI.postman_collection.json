@@ -1,0 +1,79 @@
+{
+  "info": {
+    "_postman_id": "6fe5f774-71d3-4ae7-9c13-07d876baa342",
+    "name": "SWAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3947590"
+  },
+  "item": [
+    {
+      "name": "Obter todos os filmes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/api/films",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "films"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter filme por Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:8080/api/films/1",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "films",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Alterar descrição de um filme",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"description\": \"Luke Skywalker inicia sua jornada contra o Império.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:8080/api/films/4/description",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "films",
+            "4",
+            "description"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
