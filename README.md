@@ -62,7 +62,7 @@ http://localhost:8080
 Durante a inicialização, os filmes são carregados da SWAPI e armazenados em memória.
 
 ## Endpoints
-- Para testar a aplicação vocês podem usar a url da documentação do [swagger](http://localhost:8080/swagger-ui/index.html) da aplicação ou uma collection do postman que está disponível no projeto.
+- Para testar a aplicação vocês podem usar o [Swagger UI](http://localhost:8080/swagger-ui/index.html) ou uma collection do postman que está disponível no projeto.
 
 ### Listar filmes
 
