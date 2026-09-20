@@ -61,6 +61,7 @@ http://localhost:8080
 Durante a inicialização, os filmes são carregados da SWAPI e armazenados em memória.
 
 ## Endpoints
+OBS: Uma collection do postman está disponível no projeto para caso queiram importar.
 
 ### Listar filmes
 
