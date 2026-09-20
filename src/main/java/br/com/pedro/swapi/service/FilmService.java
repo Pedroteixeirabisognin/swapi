@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.pedro.swapi.client.SwapiClient;
 import br.com.pedro.swapi.dto.SwapiFilmsResponse;
+import br.com.pedro.swapi.exception.FilmNotFoundException;
 import br.com.pedro.swapi.model.Film;
 import br.com.pedro.swapi.repository.FilmMemoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,20 @@ public class FilmService {
                 .stream()
                 .sorted(Comparator.comparing(Film::getEpisodeId))
                 .toList();
+    }
+
+    public Film findById(Integer episodeId) {
+        return repository.findById(episodeId)
+                .orElseThrow(() -> new FilmNotFoundException(episodeId));
+    }
+
+    public Film updateDescription(
+        Integer episodeId,
+        String description) {
+
+        return repository.updateDescription(
+                episodeId,
+                description
+        );
     }
 }
