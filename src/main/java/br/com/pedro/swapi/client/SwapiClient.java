@@ -3,8 +3,10 @@ package br.com.pedro.swapi.client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.client.RestClientException;
 
 import br.com.pedro.swapi.dto.SwapiFilmsResponse;
+import br.com.pedro.swapi.exception.SwapiUnavailableException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -22,12 +24,27 @@ public class SwapiClient {
     }
 
     public SwapiFilmsResponse findAllFilms() {
-        log.info("BUSCANDO FILMES NA SWAPI");
 
-        return restClient
-                .get()
-                .uri("/films/")
-                .retrieve()
-                .body(SwapiFilmsResponse.class);
+        log.info("Buscando filmes na SWAPI");
+
+        try {
+            return restClient
+                    .get()
+                    .uri("/films/")
+                    .retrieve()
+                    .body(SwapiFilmsResponse.class);
+
+        } catch (RestClientException exception) {
+
+            log.error(
+                    "Não foi possível carregar os filmes da SWAPI",
+                    exception
+            );
+
+            throw new SwapiUnavailableException(
+                    "SWAPI indisponível no momento",
+                    exception
+            );
+        }
     }
 }

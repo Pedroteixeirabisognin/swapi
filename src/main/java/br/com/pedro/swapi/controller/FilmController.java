@@ -23,10 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-@Tag(
-    name = "Films",
-    description = "Operações relacionadas aos filmes da saga Star Wars"
-)
+@Tag(name = "Films", description = "Operações relacionadas aos filmes da saga Star Wars")
 @RestController
 @RequestMapping("/api/films")
 @RequiredArgsConstructor
@@ -34,40 +31,22 @@ public class FilmController {
 
     private final FilmService filmService;
 
-    @Operation(
-        summary = "Lista todos os filmes",
-        description = "Retorna os filmes da saga Star Wars carregados em memória."
-    )
-    @ApiResponse(
-            responseCode = "200",
-            description = "Filmes encontrados"
-    )
+    @Operation(summary = "Lista todos os filmes", description = "Retorna os filmes da saga Star Wars carregados em memória.")
+    @ApiResponses({
+
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class)))
+    })
     @GetMapping
     public ResponseEntity<List<Film>> findAll() {
         return ResponseEntity.ok(filmService.findAll());
     }
 
-    @Operation(
-            summary = "Busca um filme pelo episódio",
-            description = "Retorna os dados de um filme a partir do número do episódio."
-    )
+    @Operation(summary = "Busca um filme pelo episódio", description = "Retorna os dados de um filme a partir do número do episódio.")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Filme encontrado",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = Film.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Filme não encontrado",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ApiError.class)
-                    )
-            )
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Film.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class))),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class)))
     })
     @GetMapping("/{episodeId}")
     public ResponseEntity<Film> findById(
@@ -77,36 +56,12 @@ public class FilmController {
                 filmService.findById(episodeId));
     }
 
-    
-    @Operation(
-            summary = "Altera a descrição de um filme",
-            description = "Atualiza a descrição do filme e incrementa sua versão."
-    )
+    @Operation(summary = "Altera a descrição de um filme", description = "Atualiza a descrição do filme e incrementa sua versão.")
     @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "Descrição atualizada com sucesso",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = Film.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Descrição inválida",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ApiError.class)
-                    )
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Filme não encontrado",
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = ApiError.class)
-                    )
-            )
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Film.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class))),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class))),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ApiError.class)))
     })
     @PatchMapping("/{episodeId}/description")
     public ResponseEntity<Film> updateDescription(
@@ -115,8 +70,7 @@ public class FilmController {
 
         Film film = filmService.updateDescription(
                 episodeId,
-                request.description()
-        );
+                request.description());
 
         return ResponseEntity.ok(film);
     }
